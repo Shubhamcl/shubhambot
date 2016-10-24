@@ -100,7 +100,7 @@ function receivedMessage(event) {
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: PAGE_ACCESS_TOKEN },
+    qs: { access_token: EAAOUs5y1lbIBADH6y9vHxP4R3PDxNLwRuoB3xNfS7wJ8wEGBlxArBdkz90zf5s9vKNZCN0FvoppeLCgeyWvX72IIZBNkEE2Il8cBtqOkZCVaHhW3ZAgx9hthLb0iwbdOrwVveXDFdLpJgxcaqOJOE61QNTnPpJXcZCF2XzEHvuQZDZD },
     method: 'POST',
     json: messageData
 
