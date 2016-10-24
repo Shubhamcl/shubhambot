@@ -1,4 +1,5 @@
 var express = require('express');
+var request = require('request');
 var router = express.Router();
 
 /* GET home page. */
@@ -109,11 +110,11 @@ function sendTextMessage(recipientId, messageText) {
 
   callSendAPI(messageData);
 }
-
+var token_for_access = "EAAOUs5y1lbIBADH6y9vHxP4R3PDxNLwRuoB3xNfS7wJ8wEGBlxArBdkz90zf5s9vKNZCN0FvoppeLCgeyWvX72IIZBNkEE2Il8cBtqOkZCVaHhW3ZAgx9hthLb0iwbdOrwVveXDFdLpJgxcaqOJOE61QNTnPpJXcZCF2XzEHvuQZDZD";
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: EAAOUs5y1lbIBADH6y9vHxP4R3PDxNLwRuoB3xNfS7wJ8wEGBlxArBdkz90zf5s9vKNZCN0FvoppeLCgeyWvX72IIZBNkEE2Il8cBtqOkZCVaHhW3ZAgx9hthLb0iwbdOrwVveXDFdLpJgxcaqOJOE61QNTnPpJXcZCF2XzEHvuQZDZD },
+    qs: { access_token: token_for_access },
     method: 'POST',
     json: messageData
 
