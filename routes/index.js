@@ -22,6 +22,8 @@ router.post('/webhook', function (req, res) {
   console.log(req.body);
   // Make sure this is a page subscription
   if (data.object == 'page') {
+    console.log("Length of the data.entry",data.entry.length);
+    console.log(data.entry[0].messaging);
     // Iterate over each entry
     // There may be multiple if batched
     data.entry.forEach(function(pageEntry) {
