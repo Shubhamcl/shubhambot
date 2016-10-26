@@ -19,7 +19,7 @@ router.get('/webhook', function (req, res) {
 // POST for grabbing messages from chat
 router.post('/webhook', function (req, res) {
   var data = req.body;
-
+  console.log(req.body);
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
@@ -31,13 +31,17 @@ router.post('/webhook', function (req, res) {
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
         if (messagingEvent.optin) {
-          receivedAuthentication(messagingEvent);
+          //receivedAuthentication(messagingEvent);
+          console.log('case receivedAuthentication');
         } else if (messagingEvent.message) {
+          console.log('case receivedMessage');
           receivedMessage(messagingEvent);
         } else if (messagingEvent.delivery) {
-          receivedDeliveryConfirmation(messagingEvent);
+          console.log(' case receivedDeliveryConfirmation');
+          // receivedDeliveryConfirmation(messagingEvent);
         } else if (messagingEvent.postback) {
-          receivedPostback(messagingEvent);
+          console.log(' case receivedPostback');
+          // receivedPostback(messagingEvent);
         } else {
           console.log("Webhook received unknown messagingEvent: ", messagingEvent);
         }
@@ -110,7 +114,7 @@ function sendTextMessage(recipientId, messageText) {
 
   callSendAPI(messageData);
 }
-var token_for_access = "EAAOUs5y1lbIBADH6y9vHxP4R3PDxNLwRuoB3xNfS7wJ8wEGBlxArBdkz90zf5s9vKNZCN0FvoppeLCgeyWvX72IIZBNkEE2Il8cBtqOkZCVaHhW3ZAgx9hthLb0iwbdOrwVveXDFdLpJgxcaqOJOE61QNTnPpJXcZCF2XzEHvuQZDZD";
+var token_for_access = "EAAOUs5y1lbIBAIHin1B5UMI2MIlRiUAi4PplbFrLgkvkAfE8TlIAW6tiwp11LBigNQFx4mwOiAZChmh5OPLHQ1ZBYr0KSCF2tkXeWwj4uqfbwhL3wkbcx9UBYRPhElkxDZAPn7nZAGipqTZAZAsbXzCUhrMxkovvGnIcU5uwCqLwZDZD";
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
